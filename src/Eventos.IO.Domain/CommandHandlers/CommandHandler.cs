@@ -24,8 +24,7 @@ namespace Eventos.IO.Domain.CommandHandlers
         protected void NotificarValidacoesErro(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)
-            {
-                Console.WriteLine(error.ErrorMessage);
+            {                
                 _bus.RaiseEvent(new DomainNotification(error.PropertyName, error.ErrorMessage));
             }
         }

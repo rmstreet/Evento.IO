@@ -44,7 +44,6 @@ namespace Eventos.IO.Domain.Eventos.Command
 
             if (Commit())
             {
-                Console.WriteLine("Evento registrado com sucesso");
                 _bus.RaiseEvent(new EventoRegistradoEvent(evento.Id, evento.Nome, evento.DataInicio, evento.DataFim, evento.Gratuito, evento.Valor, evento.Online, evento.NomeEmpresa));
             }
         }

@@ -2,6 +2,7 @@
 namespace Eventos.IO.Domain.Eventos.Events
 {
     using Domain.Core.Events;
+    using System;
 
     public class EventoEventHandler :
         IHandler<EventoRegistradoEvent>,
@@ -10,17 +11,20 @@ namespace Eventos.IO.Domain.Eventos.Events
     {
         public void Handle(EventoRegistradoEvent message)
         {
-            // Enviar um e-mail
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Evento Registrado com sucesso");
         }
 
         public void Handle(EventoAtualizadoEvent message)
         {
-            // Enviar um e-mail
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Evento Atualizado com sucesso");
         }
 
         public void Handle(EventoExcluidoEvent message)
         {
-            // Enviar um e-mail
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Evento Excluido com sucesso");
         }
     }
 }

@@ -1,15 +1,16 @@
 ﻿
 namespace Eventos.IO.Domain.Core.Notifications
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class DamainNotificationHandler : IDomainNotificationHandler<DomainNotification>
+    public class DomainNotificationHandler : IDomainNotificationHandler<DomainNotification>
     {
 
         private List<DomainNotification> _notifications;
 
-        public DamainNotificationHandler()
+        public DomainNotificationHandler()
         {
             _notifications = new List<DomainNotification>();
         }
@@ -22,6 +23,8 @@ namespace Eventos.IO.Domain.Core.Notifications
         public void Handle(DomainNotification message)
         {
             _notifications.Add(message);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Erro: {message.Key} - {message.Value}");
         }
 
         public bool HasNotifications()
