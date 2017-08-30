@@ -8,7 +8,7 @@ namespace ConsoleTesting
 {
     public class FakeEventoRepository : IEventoRepository
     {
-        public void Add(Evento obj)
+        public void Adicionar(Evento obj)
         {
             //
         }
@@ -18,22 +18,22 @@ namespace ConsoleTesting
             //
         }
 
-        public List<Evento> Find(Expression<Func<Evento, bool>> predicate)
+        public List<Evento> Buscar(Expression<Func<Evento, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public List<Evento> GetAll()
+        public List<Evento> ObterTodos()
         {
             throw new NotImplementedException();
         }
 
-        public Evento GetById(Guid id)
+        public Evento ObterPorId(Guid id)
         {
             return new Evento("Fake", DateTime.Now, DateTime.Now, true, 0, true, "Empresa A");
         }
 
-        public void Remove(Guid id)
+        public void Remover(Guid id)
         {
             //
         }
@@ -43,7 +43,7 @@ namespace ConsoleTesting
             throw new NotImplementedException();
         }
 
-        public void Update(Evento obj)
+        public void Atualizar(Evento obj)
         {
             //
         }
