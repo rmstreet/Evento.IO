@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventos.IO.Domain.Core", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventos.IO.Infra.Data", "src\Eventos.IO.Infra.Data\Eventos.IO.Infra.Data.csproj", "{5B5A3B13-EFFC-438B-8289-81EDAE517765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventos.IO.Site", "src\Eventos.IO.Site\Eventos.IO.Site.csproj", "{7821BFC7-09B6-4236-A12B-65B5EB4E2481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventos.IO.Site", "src\Eventos.IO.Site\Eventos.IO.Site.csproj", "{7821BFC7-09B6-4236-A12B-65B5EB4E2481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventos.IO.Application", "src\Eventos.IO.Application\Eventos.IO.Application.csproj", "{08DE590F-CA67-41D6-A2E0-0ABC694B6023}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{7821BFC7-09B6-4236-A12B-65B5EB4E2481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7821BFC7-09B6-4236-A12B-65B5EB4E2481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7821BFC7-09B6-4236-A12B-65B5EB4E2481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08DE590F-CA67-41D6-A2E0-0ABC694B6023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08DE590F-CA67-41D6-A2E0-0ABC694B6023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08DE590F-CA67-41D6-A2E0-0ABC694B6023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08DE590F-CA67-41D6-A2E0-0ABC694B6023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{8832FDDE-6867-416F-A1A1-7F47CE380B86} = {33BF8F05-4A72-4709-8713-55334209E35E}
 		{5B5A3B13-EFFC-438B-8289-81EDAE517765} = {07B1EE2E-0B17-4D20-B043-CFFE4F7DAD96}
 		{7821BFC7-09B6-4236-A12B-65B5EB4E2481} = {45133A72-7F70-4E2F-A8D7-06E6D8EA9531}
+		{08DE590F-CA67-41D6-A2E0-0ABC694B6023} = {6B5C2F7F-1641-42DA-8153-1F65AF550819}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46368FB5-D4BB-4190-855D-899F6ECB706E}
