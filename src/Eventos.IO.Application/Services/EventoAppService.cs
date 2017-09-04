@@ -33,6 +33,8 @@ namespace Eventos.IO.Application.Services
 
         public List<EventoViewModel> ObterEventoPorOrganizador(Guid organizadorId)
         {
+            // TODO: A expressão deveria ser um scope(definido na camada de domain)
+
             return _mapper.Map<List<EventoViewModel>>(_eventoRepository.ObterTodos(default(int),
                                                                                    default(int),
                                                                                    f => f.OrganizadorId == organizadorId));
