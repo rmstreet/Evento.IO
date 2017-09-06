@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Eventos.IO.Site.Data;
-using Eventos.IO.Site.Models;
-using Eventos.IO.Site.Services;
-
+﻿
 namespace Eventos.IO.Site
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Data;
+    using Models;
+    using Services;
+    using Microsoft.AspNetCore.Http;
+    using Infra.CrossCutting.Bus;
+    using Infra.CrossCutting.IoC;
+    using AutoMapper;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -48,14 +49,22 @@ namespace Eventos.IO.Site
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddAutoMapper();
 
             // Add application services.
+            // TODO: Levar o DI do Identity para a camada de IoC, quando o identity estiver desacoplado.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            RegisterServices(services);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+                              IHostingEnvironment env, 
+                              ILoggerFactory loggerFactory,
+                              IHttpContextAccessor accessor)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -83,6 +92,15 @@ namespace Eventos.IO.Site
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // TODO: Obter o mecanismo de DI
+            InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
         }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            NativeInjectorBootStrapper.RegisterServices(services);
+        }
+
     }
 }
