@@ -26,6 +26,8 @@ namespace Eventos.IO.Infra.Data.Repository
             DbSet.Add(obj);
         }
 
+        public abstract int Adicionar(List<TEntity> obj);
+
         public virtual void Atualizar(TEntity obj)
         {
             DbSet.Update(obj);
@@ -40,6 +42,8 @@ namespace Eventos.IO.Infra.Data.Repository
         {
             return DbSet.AsNoTracking().FirstOrDefault(t => t.Id == id);
         }
+
+        public abstract List<TEntity> ObterTodos();
 
         public List<TEntity> ObterTodos(int take = 1000, int skip = 0, Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
@@ -90,7 +94,5 @@ namespace Eventos.IO.Infra.Data.Repository
         {
             Db.Dispose();
         }
-
-        
     }
 }

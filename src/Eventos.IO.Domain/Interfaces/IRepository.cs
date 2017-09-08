@@ -10,7 +10,9 @@ namespace Eventos.IO.Domain.Interfaces
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
     {
         void Adicionar(TEntity obj);
+        int Adicionar(List<TEntity> obj);
         TEntity ObterPorId(Guid id);
+        List<TEntity> ObterTodos();
         List<TEntity> ObterTodos(int take = 100, int skip = 0, Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
         void Atualizar(TEntity obj);
         void Remover(Guid id);
