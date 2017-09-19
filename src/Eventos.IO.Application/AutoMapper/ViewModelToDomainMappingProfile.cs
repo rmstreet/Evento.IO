@@ -5,6 +5,7 @@ namespace Eventos.IO.Application.AutoMapper
     using Domain.Eventos.Commands;
     using global::AutoMapper;
     using System;
+    using Eventos.IO.Domain.Organizadores.Commands;
 
     public class ViewModelToDomainMappingProfile : Profile
     {
@@ -22,6 +23,10 @@ namespace Eventos.IO.Application.AutoMapper
 
             CreateMap<EventoViewModel, ExcluirEventoCommand>()
                 .ConstructUsing(c => new ExcluirEventoCommand(c.Id));
+
+            // Organizador
+            CreateMap<OrganizadorViewModel, RegistrarOrganizadorCommand>()
+                .ConstructUsing(c => new RegistrarOrganizadorCommand(c.Id, c.Nome, c.CPF, c.Email));
         }
     }
 }
