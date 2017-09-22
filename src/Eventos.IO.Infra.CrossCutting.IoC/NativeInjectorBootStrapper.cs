@@ -2,23 +2,25 @@
 namespace Eventos.IO.Infra.CrossCutting.IoC
 {
     using AutoMapper;
-    using Eventos.IO.Application.Interfaces;
-    using Eventos.IO.Application.Services;
-    using Eventos.IO.Domain.Core.Bus;
-    using Eventos.IO.Domain.Core.Events;
-    using Eventos.IO.Domain.Core.Notifications;
-    using Eventos.IO.Domain.Eventos.Command;
-    using Eventos.IO.Domain.Eventos.Commands;
-    using Eventos.IO.Domain.Eventos.Events;
-    using Eventos.IO.Domain.Eventos.Repository;
-    using Eventos.IO.Domain.Interfaces;
-    using Eventos.IO.Domain.Organizadores.Commands;
-    using Eventos.IO.Domain.Organizadores.Events;
-    using Eventos.IO.Domain.Organizadores.Repository;
-    using Eventos.IO.Infra.CrossCutting.Bus;
-    using Eventos.IO.Infra.Data.Context;
-    using Eventos.IO.Infra.Data.Repository;
-    using Eventos.IO.Infra.Data.UoW;
+    using Application.Interfaces;
+    using Application.Services;
+    using Domain.Core.Bus;
+    using Domain.Core.Events;
+    using Domain.Core.Notifications;
+    using Domain.Eventos.Command;
+    using Domain.Eventos.Commands;
+    using Domain.Eventos.Events;
+    using Domain.Eventos.Repository;
+    using Domain.Interfaces;
+    using Domain.Organizadores.Commands;
+    using Domain.Organizadores.Events;
+    using Domain.Organizadores.Repository;
+    using Infra.CrossCutting.Bus;
+    using Infra.CrossCutting.Identity.Models;
+    using Infra.CrossCutting.Identity.Services;
+    using Infra.Data.Context;
+    using Infra.Data.Repository;
+    using Infra.Data.UoW;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -28,9 +30,7 @@ namespace Eventos.IO.Infra.CrossCutting.IoC
         {
             // ASPNET
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            // TODO: Levar o DI do Identity para a camada de IoC, quando o identity estiver desacoplado.
-            //services.AddScoped<IUser, AspNetUser>();
-
+                        
             // Application
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
@@ -59,6 +59,11 @@ namespace Eventos.IO.Infra.CrossCutting.IoC
 
             // Infra - Bus
             services.AddScoped<IBus, InMemoryBus>();
+
+            // Infra - Identity
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<IUser, AspNetUser>();
 
         }
     }

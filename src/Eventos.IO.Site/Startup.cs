@@ -8,14 +8,14 @@ namespace Eventos.IO.Site
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Data;
-    using Models;
-    using Services;
     using Microsoft.AspNetCore.Http;
     using Infra.CrossCutting.Bus;
     using Infra.CrossCutting.IoC;
     using AutoMapper;
     using Eventos.IO.Domain.Interfaces;
+    using Eventos.IO.Infra.CrossCutting.Identity.Data;
+    using Eventos.IO.Infra.CrossCutting.Identity.Models;
+    using Eventos.IO.Infra.CrossCutting.Identity.Services;
 
     public class Startup
     {
@@ -51,13 +51,7 @@ namespace Eventos.IO.Site
 
             services.AddMvc();
             services.AddAutoMapper();
-
-            // Add application services.
-            // TODO: Levar o DI do Identity para a camada de IoC, quando o identity estiver desacoplado.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddScoped<IUser, AspNetUser>();
-
+            
             RegisterServices(services);
             
         }

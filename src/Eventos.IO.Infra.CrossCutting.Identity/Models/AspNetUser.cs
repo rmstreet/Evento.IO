@@ -1,5 +1,5 @@
 ﻿
-namespace Eventos.IO.Site.Models
+namespace Eventos.IO.Infra.CrossCutting.Identity.Models
 {
     using System;
     using System.Collections.Generic;

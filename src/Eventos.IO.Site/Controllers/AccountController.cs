@@ -11,14 +11,13 @@ namespace Eventos.IO.Site.Controllers
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
-    using Models;
-    using Models.AccountViewModels;
-    using Services;
     using Domain.Core.Notifications;
     using Application.Interfaces;
     using Application.ViewModels;
     using Domain.Interfaces;
-
+    using Infra.CrossCutting.Identity.Models;
+    using Infra.CrossCutting.Identity.Services;
+    using Infra.CrossCutting.Identity.Models.AccountViewModels;
 
     [Authorize]
     public class AccountController : BaseController

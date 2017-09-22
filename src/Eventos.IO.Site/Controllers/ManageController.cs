@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Eventos.IO.Site.Models;
-using Eventos.IO.Site.Models.ManageViewModels;
-using Eventos.IO.Site.Services;
-
+﻿
 namespace Eventos.IO.Site.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
+    using Infra.CrossCutting.Identity.Models;
+    using Infra.CrossCutting.Identity.Services;
+    using Infra.CrossCutting.Identity.Models.ManageViewModels;
+
     [Authorize]
     public class ManageController : Controller
     {
