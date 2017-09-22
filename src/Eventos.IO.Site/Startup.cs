@@ -15,6 +15,7 @@ namespace Eventos.IO.Site
     using Infra.CrossCutting.Bus;
     using Infra.CrossCutting.IoC;
     using AutoMapper;
+    using Eventos.IO.Domain.Interfaces;
 
     public class Startup
     {
@@ -55,6 +56,7 @@ namespace Eventos.IO.Site
             // TODO: Levar o DI do Identity para a camada de IoC, quando o identity estiver desacoplado.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<IUser, AspNetUser>();
 
             RegisterServices(services);
             

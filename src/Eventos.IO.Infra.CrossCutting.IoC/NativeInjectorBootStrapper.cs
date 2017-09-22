@@ -19,12 +19,18 @@ namespace Eventos.IO.Infra.CrossCutting.IoC
     using Eventos.IO.Infra.Data.Context;
     using Eventos.IO.Infra.Data.Repository;
     using Eventos.IO.Infra.Data.UoW;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
 
     public class NativeInjectorBootStrapper
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            // ASPNET
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // TODO: Levar o DI do Identity para a camada de IoC, quando o identity estiver desacoplado.
+            //services.AddScoped<IUser, AspNetUser>();
+
             // Application
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
