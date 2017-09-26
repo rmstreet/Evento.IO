@@ -12,7 +12,9 @@
     <div class="form-horizontal">
         <h4>EventoViewModel</h4>
         <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <vc:summary />
+
     <input type="hidden" asp-for="Id" />
         <div class="form-group">
             <label asp-for="Nome" class="col-md-2 control-label"></label>
@@ -85,18 +87,21 @@
                 <input asp-for="NomeEmpresa" class="form-control" />
                 <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
             </div>
-        </div> 
+        </div>         
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Atualizar Evento" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar para Lista</a>
             </div>
         </div>
     </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div id="EnderecoForm">
+    @Html.Partial("_DetalheEndereco")
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
