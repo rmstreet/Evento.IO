@@ -130,5 +130,49 @@ namespace Eventos.IO.Site.Controllers
             return PartialView("_IncluirEndereco", eventoViewModel);
         }
 
+        public IActionResult AtualizarEndereco(Guid? id)
+        {
+            if (id == null) return NotFound();
+
+            var eventoViewModel = _eventoAppService.ObterPorId(id.Value);
+            return PartialView("_AtualizarEndereco", eventoViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult IncluirEndereco(EventoViewModel eventoViewModel)
+        {
+            eventoViewModel.Endereco.EventoId = eventoViewModel.Id;
+            _eventoAppService.AdicionarEndereco(eventoViewModel.Endereco);
+
+            if (OperacaoValida())
+            {
+                string url = Url.Action("ObterEndereco", "Eventos", new {id = eventoViewModel.Id});
+                return Json(new { success = true, url = url });
+            }
+
+            return PartialView("_IncluirEndereco", eventoViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AtualizarEndereco(EventoViewModel eventoViewModel)
+        {
+            _eventoAppService.AtualizarEndereco(eventoViewModel.Endereco);
+
+            if (OperacaoValida())
+            {
+                string url = Url.Action("ObterEndereco", "Eventos", new { id = eventoViewModel.Id });
+                return Json(new { success = true, url = url });
+            }
+
+            return PartialView("_AtualizarEndereco", eventoViewModel);
+        }
+
+        public IActionResult ObterEndereco(Guid id)
+        {
+            return PartialView("_DetalhesEndereco", _eventoAppService.ObterEnderecoPorId(id));
+        }
+
     }
 }
