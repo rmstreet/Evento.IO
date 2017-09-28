@@ -88,9 +88,13 @@ namespace Eventos.IO.Site.Controllers
         {
             if (!ModelState.IsValid) return View(eventoViewModel);
 
+            eventoViewModel.OrganizadorId = OrganizadorId;
             _eventoAppService.Atualizar(eventoViewModel);
 
             ViewBag.RetornoPost = OperacaoValida() ? "success,Evento atualizado com sucesso!" : "error,Evento não atualizado! Verifique as mensagens!";
+
+            if (_eventoAppService.ObterPorId(eventoViewModel.id).Online)
+                eventoViewModel.Endereco = null;
 
             return View(eventoViewModel);
         }
@@ -142,6 +146,7 @@ namespace Eventos.IO.Site.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IncluirEndereco(EventoViewModel eventoViewModel)
         {
+            ModelState.Clear();
             eventoViewModel.Endereco.EventoId = eventoViewModel.Id;
             _eventoAppService.AdicionarEndereco(eventoViewModel.Endereco);
 
