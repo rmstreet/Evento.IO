@@ -20,10 +20,15 @@ namespace Eventos.IO.Site.Controllers
             _eventoAppService = eventoAppService;    
         }
 
-        [Authorize]
         public IActionResult Index()
         {            
             return View(_eventoAppService.ObterTodos());
+        }
+
+        [Authorize]
+        public IActionResult MeusEventos()
+        {
+            return View(_eventoAppService.ObterEventoPorOrganizador(OrganizadorId));
         }
 
         [Authorize]
