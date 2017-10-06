@@ -163,6 +163,7 @@ namespace Eventos.IO.Site.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AtualizarEndereco(EventoViewModel eventoViewModel)
         {
+            ModelState.Clear();
             _eventoAppService.AtualizarEndereco(eventoViewModel.Endereco);
 
             if (OperacaoValida())
