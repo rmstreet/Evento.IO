@@ -93,8 +93,14 @@ namespace Eventos.IO.Site.Controllers
 
             ViewBag.RetornoPost = OperacaoValida() ? "success,Evento atualizado com sucesso!" : "error,Evento não atualizado! Verifique as mensagens!";
 
-            if (_eventoAppService.ObterPorId(eventoViewModel.id).Online)
+            if (_eventoAppService.ObterPorId(eventoViewModel.Id).Online)
+            {
                 eventoViewModel.Endereco = null;
+            }               
+            else
+            {
+                eventoViewModel = _eventoAppService.ObterPorId(eventoViewModel.Id);
+            }
 
             return View(eventoViewModel);
         }
