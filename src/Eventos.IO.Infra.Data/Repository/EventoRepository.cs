@@ -82,5 +82,12 @@ namespace Eventos.IO.Infra.Data.Repository
 
             return Db.Database.GetDbConnection().Query<Evento>(sql).ToList();
         }
+
+        public override void Remover(Guid id)
+        {
+            var evento = ObterPorId(id);
+            evento.ExcluirEvento();
+            Atualizar(evento);
+        }
     }
 }

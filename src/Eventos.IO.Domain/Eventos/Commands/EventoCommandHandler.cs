@@ -84,8 +84,12 @@ namespace Eventos.IO.Domain.Eventos.Command
         public void Handle(ExcluirEventoCommand message)
         {
             if (!EventoExistente(message.Id, message.MessageType)) return;
+            var eventoAtual = _eventoRepository.ObterPorId(message.Id);
 
-            _eventoRepository.Remover(message.Id);
+            // Validações de negocio
+            eventoAtual.ExcluirEvento();
+
+            _eventoRepository.Atualizar(eventoAtual);
 
             if (Commit())
             {
