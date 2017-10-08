@@ -9,6 +9,7 @@ namespace Eventos.IO.Application.Services
     using Domain.Eventos.Commands;
     using global::AutoMapper;
     using Eventos.IO.Domain.Eventos.Repository;
+    using Eventos.IO.Domain.Interfaces;
 
     public class EventoAppService : IEventoAppService
     {
@@ -16,13 +17,18 @@ namespace Eventos.IO.Application.Services
         private readonly IBus _bus;
         private readonly IMapper _mapper;
         private readonly IEventoRepository _eventoRepository;
+        private readonly IUser _user;
 
 
-        public EventoAppService(IBus bus, IMapper mapper, IEventoRepository eventoRepository)
+        public EventoAppService(IBus bus, 
+                                IMapper mapper, 
+                                IEventoRepository eventoRepository, 
+                                IUser user)
         {
             _bus = bus;
             _mapper = mapper;
             _eventoRepository = eventoRepository;
+            _user = user;
         }
 
         public void Registrar(EventoViewModel eventoViewModel)

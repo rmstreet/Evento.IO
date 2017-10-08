@@ -78,10 +78,16 @@ namespace Eventos.IO.Site.Controllers
             }
 
             var eventoViewModel = _eventoAppService.ObterPorId(id.Value);
+
             if (eventoViewModel == null)
             {
                 return NotFound();
             }
+
+            if (eventoViewModel.OrganizadorId != OrganizadorId)
+            {
+                return RedirectToAction("MeusEventos", _eventoAppService.ObterEventoPorOrganizador(OrganizadorId));
+            }            
             
             return View(eventoViewModel);
         }
