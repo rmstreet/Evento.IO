@@ -28,6 +28,10 @@
         "hideMethod": "fadeOut"
     };
 
+    toastr.options.onHidden = function () {
+        
+    }
+
     $('#DataInicio').datepicker({
         format: "dd/mm/yyyy",
         startDate: "tomorrow",

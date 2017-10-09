@@ -1,5 +1,5 @@
 ﻿@using Eventos.IO.Application.ViewModels
-@model Eventos.IO.Application.ViewModels.EventoViewModel
+@model EventoViewModel
 
 @{
     ViewData["Title"] = "Registrar novo Evento";
@@ -179,8 +179,6 @@
             var notificacao = ViewBag.RetornoPost.ToString().Split(',');
 
             <script>
-                
-
                 toastr["@notificacao[0]"]("@notificacao[1]");
             </script>
         }
